@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <>
             <header className="bg-gray-700 py-2 sticky z-10 top-0 shadow-md text-gray-900 w-full">
-                <nav className="container">
+                <nav className="container lg:max-w-[980px]">
                     <ul className="flex justify-between align-middle items-center">
                         <li className="font-bold text-sm">
                             <span className="text-orange-500">C</span><span className="text-blue-500">R</span><span className="text-green-500">U</span><span className="text-red-500">D</span>
