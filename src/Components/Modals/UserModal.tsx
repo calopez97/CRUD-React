@@ -81,11 +81,11 @@ const UserModal = ({ onClose, userId }: userModalProps) => {
         <>
             {
                 !errors ? (
-                    <div className="modal show fade block bg-[#000000ba]" tabIndex="-1">
+                    <div className="modal show fade block bg-[#000000c2]" tabIndex="-1">
                         <div className="modal-dialog">
                             <div className="modal-content">
                                 <div className="modal-header justify-between">
-                                    <h5 className="modal-title text-xl uppercase font-bold">Information </h5>
+                                    <h5 className="modal-title text-xl uppercase font-bold">Perfil</h5>
 
                                     <button className="close font-bold text-xl" onClick={() => onClose(false)}>
                                         X

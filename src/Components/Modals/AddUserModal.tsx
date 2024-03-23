@@ -67,7 +67,7 @@ const AddUserModal = ({ onClose }: addUserModalProps) => {
                     
                     MySwal.fire({
                         icon:"success",
-                        title: <p className="text-2xl">User was added succesfully</p>,
+                        title: <p className="text-2xl">¡El usuario fue agregado exitosamente!</p>,
                         confirmButtonColor:"#3085d6",
                         confirmButtonText:"OK",
 
@@ -85,11 +85,11 @@ const AddUserModal = ({ onClose }: addUserModalProps) => {
     return (
 
         !error ? 
-        <div className="modal show fade block bg-[#000000ba]" tabIndex="-1">
+        <div className="modal show fade block bg-[#000000c2] " tabIndex="-1">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header justify-between">
-                        <h5 className="modal-title text-gray-900 text-xl uppercase font-bold">Add User</h5>
+                        <h5 className="modal-title text-gray-900 text-xl uppercase font-bold">Agregar Usuario</h5>
                         <button className="close font-bold text-gray-900 outline-none text-xl" onClick={() => onClose(false)}>
                             X
                         </button>
@@ -99,19 +99,19 @@ const AddUserModal = ({ onClose }: addUserModalProps) => {
                             <label
                                 htmlFor="firstName"
                                 className="label mt-2"
-                            >Name</label>
+                            >Nombre</label>
                             <input type="text" className="p-2 border-gray-900 border-[1px]" name="firstName" id="firstName"
                                 onChange={(e) => handleChange(e)}
-                                placeholder="Write your name" />
+                                placeholder="Escribe tu nombre" />
                             <label
                                 htmlFor="lastName"
                                 className="label mt-2"
-                            >LastName</label>
+                            >Apellido</label>
                             <input type="text"
                                 onChange={(e) => handleChange(e)}
                                 name="lastName"
                                 className="p-2 border-gray-900 border-[1px]"
-                                id="lastName" placeholder="Write your lastname" />
+                                id="lastName" placeholder="Escribe tu apellido" />
                             <label
                                 htmlFor="email"
                                 className="mt-2"
@@ -119,7 +119,7 @@ const AddUserModal = ({ onClose }: addUserModalProps) => {
                             <input type="email"
                                 onChange={(e) => handleChange(e)}
                                 className="p-2 border-gray-900 border-[1px]"
-                                name="email" id="email" placeholder="Write your name" />
+                                name="email" id="email" placeholder="example@example.com" />
 
                             <button className="bg-green-500 text-white p-2 rounded-md"
                                 // onClick={() =>(true)}

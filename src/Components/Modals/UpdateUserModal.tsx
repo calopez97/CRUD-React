@@ -83,7 +83,7 @@ const UpdateUserModal = ({ onClose, currentUser }: UpdateUserModalProps) => {
                     
                     MySwal.fire({
                         icon:"success",
-                        title: <p className="text-2xl">User was updated succesfully</p>,
+                        title: <p className="text-2xl">¡El usuario fue actualizado exitosamente!</p>,
                         confirmButtonColor:"#3085d6",
                         confirmButtonText:"OK",
 
@@ -101,11 +101,11 @@ const UpdateUserModal = ({ onClose, currentUser }: UpdateUserModalProps) => {
     return (
 
         !error ? 
-        <div className="modal show fade block bg-[#000000ba]" tabIndex="-1">
+        <div className="modal show fade block bg-[#0000005c]" tabIndex="-1">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header justify-between">
-                        <h5 className="modal-title text-gray-900 text-xl uppercase font-bold">Update User</h5>
+                        <h5 className="modal-title text-gray-900 text-xl uppercase font-bold">Actualizar Usuario</h5>
                         <button className="close font-bold text-gray-900 outline-none text-xl" onClick={() => onClose(false)}>
                             X
                         </button>
@@ -115,14 +115,14 @@ const UpdateUserModal = ({ onClose, currentUser }: UpdateUserModalProps) => {
                             <label
                                 htmlFor="firstName"
                                 className="label mt-2"
-                            >Name</label>
+                            >Nombre</label>
                             <input type="text" className="p-2 border-gray-900 border-[1px]" name="firstName" id="firstName"
                                 onChange={(e) => handleChange(e)}
                                 placeholder={currentUser?.firstName} />
                             <label
                                 htmlFor="lastName"
                                 className="label mt-2"
-                            >LastName</label>
+                            >Apellido</label>
                             <input type="text"
                                 onChange={(e) => handleChange(e)}
                                 name="lastName"
@@ -137,7 +137,7 @@ const UpdateUserModal = ({ onClose, currentUser }: UpdateUserModalProps) => {
                                 onChange={(e) => handleChange(e)}
                                 value={currentUser?.email}
                                 className="p-2 border-gray-900 border-[1px] pointer-events-none"
-                                name="email" id="email" placeholder={currentUser?.email} 
+                                name="email" id="email" placeholder={currentUser?.email}    
                                 disabled
                             />
     
