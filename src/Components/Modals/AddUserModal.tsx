@@ -29,6 +29,13 @@ const AddUserModal = ({ onClose }: addUserModalProps) => {
     const { addUser, userAdded } = useAppContext()
 
 
+    /**
+      * La función `handleChange` en TypeScript React actualiza el estado con el nuevo valor basado en
+      * el nombre del objetivo del evento.
+      * @param {SetStateAction<{ nombre: cadena; apellido: cadena; correo electrónico: cadena; }> | cualquiera} e - El
+      * Se espera que el parámetro `e` en la función `handleChange` sea un objeto `SetStateAction`
+      * que contiene las propiedades `nombre`, `apellido` y `correo electrónico`, o puede ser de tipo `cualquiera`.
+    */
     const handleChange = (e: SetStateAction<{ name: string; lastname: string; email: string; }> | any) => {
         setCredentials({
             ...credentials,
@@ -49,6 +56,10 @@ const AddUserModal = ({ onClose }: addUserModalProps) => {
         }
     }
 
+
+    /* Este bloque de código verifica si el indicador `userAdded` es verdadero y no hay errores (`!error`).
+     Si se cumplen ambas condiciones, muestra un mensaje de éxito usando SweetAlert2 (`MySwal.fire`) para
+     informar al usuario que el usuario se agregó correctamente. */
     if(userAdded && !error){
         return(
             <>

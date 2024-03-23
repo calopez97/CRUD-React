@@ -2,7 +2,6 @@ import { useState, useEffect, Dispatch, SetStateAction } from "react";
 
 import { useAppContext } from "../../Context/AppProvider";
 import { translateTitle } from "../utils/translateTitle";
-import UpdateUserModal from "./UpdateUserModal";
 
 interface userModalProps {
     onClose: Dispatch<SetStateAction<boolean>>,
@@ -22,7 +21,12 @@ const UserModal = ({ onClose, userId }: userModalProps) => {
     }, [userId])
 
 
-
+    /**
+     * La función `handleUserInfo` obtiene de forma asincrónica información del usuario por ID de usuario y actualiza el
+     * estado con los datos recuperados o establece un indicador de error si hay un error.
+     * @param {string} userId: el parámetro `userId` es una cadena que representa el identificador único de
+     * un usuario. Se utiliza para recuperar la información del usuario de la base de datos o de cualquier otra fuente de datos.
+    */
     const handleUserInfo = async (userId: string) => {
         try {
             const info = await getUserInfo(userId);
@@ -35,12 +39,21 @@ const UserModal = ({ onClose, userId }: userModalProps) => {
         }
     }
 
+    /**
+      * La función `handleDeleteUser` cierra un modal y elimina un usuario según la ID proporcionada.
+      * @param {string} id: el parámetro `id` en la función `handleDeleteUser` es una cadena que
+      * representa el identificador único del usuario que desea eliminar.
+    */
     const handleDeleteUser = (id: string) => {
         onClose(!close)
         deleteUser(id)
     }
 
 
+    /**
+      * La función `handleShowUpdateModal` establece el estado `showUpdateModal` en verdadero y llama al
+      * Función `onClose` con falso como argumento.
+    */
     const handleShowUpdateModal = () => {
         setShowUpdateModal(true);
         onClose(false)
@@ -79,49 +92,49 @@ const UserModal = ({ onClose, userId }: userModalProps) => {
                                     </button>
                                 </div>
 
-                                <div className="modal-body">
+                                <div className="modal-body text-center">
                                     {/* <small className="block">Your id: {user.id}</small> */}
-                                    <div className="image-modal-profile">
-                                        <img alt={user.title} title={user.title} src={user.picture} />
+                                    <div className="image-modal-profile ">
+                                        <img alt={user.title} className="mx-auto rounded-full" title={user.title} src={user.picture} />
                                     </div>
                                     <div className="modal-profile">
                                         <small className="prefix">{translateTitle[user.title]}</small>
-                                        <h3 className="first-name">{user.firstName}</h3>
+                                        <h3 className="first-name text-xl font-bold">{user.firstName}</h3>
                                         <p className="last-name">{user.lastName}</p>
                                     </div>
                                 </div>
                                 <div className="modal-footer gap-5 flex-wrap">
                                     <ul className="info-list md:w-[40%] font-bold flex flex-col justify-center align-middle">
-                                        <li className="field t w-full">Gender
+                                        <li className="field t w-full mb-2">Género
                                             <p className="data font-light">{user.gender}</p>
                                         </li>
-                                        <li className="field w-full">Date of Birth
+                                        <li className="field w-full mb-2">Fecha de nacimiento
                                             <p className="data font-light">{birthDate}</p>
                                         </li>
-                                        <li className="field w-full">Register Date
+                                        <li className="field w-full mb-2">Día de registro
                                             <p className="data font-light">{creationDate}</p>
                                         </li>
-                                        <li className="field w-full">Email
+                                        <li className="field w-full mb-2">Email
                                             <p className="data font-light">{user.email}</p>
                                         </li>
-                                        <li className="field w-full">Phone
+                                        <li className="field w-full mb-2">Télefono
                                             <p className="data font-light">{user.phone}</p>
                                         </li>
                                     </ul>
                                     <ul className="info-list  md:w-[40%] justify-center font-bold align-middle ">
-                                        <li className="field">State
+                                        <li className="field mb-2">Estado
                                             <p className="data font-light">{location.state}</p>
                                         </li>
-                                        <li className="field">Street
+                                        <li className="field mb-2">Calle
                                             <p className="data font-light">{location.street}</p>
                                         </li>
-                                        <li className="field">Country
+                                        <li className="field mb-2">País
                                             <p className="data font-light">{location.country}</p>
                                         </li>
-                                        <li className="field">City
+                                        <li className="field mb-2">Ciudad
                                             <p className="data font-light">{location.city}</p>
                                         </li>
-                                        <li className="field">Timezone
+                                        <li className="field mb-2">Zona horaria
                                             <p className="data font-light">{location.timezone}</p>
                                         </li>
                                     </ul>

@@ -32,7 +32,8 @@ const AuthContext = createContext({
     showUpdateModal:false,
     setShowUpdateModal:(boolean) => {},
     userWasUpdated:false,
-    setUserWasUpdated:  ( boolean ) => { }
+    setUserWasUpdated:  ( boolean ) => { },
+    currentUser:[],
 })
 
 
@@ -43,11 +44,17 @@ export function AppProvider({ children }: AuthProviderProps) {
     const [ userAdded, setUserAdded ] = useState(false);
     const [userWasDeleted, setUserWasDeleted] = useState(false)
     const [showUpdateModal, setShowUpdateModal] = useState(false)
-    
     const [userWasUpdated, setUserWasUpdated] = useState(false)
+    const [currentUser, setCurrentUser] = useState([])
+    
     
     useEffect(() => {
       
+        /**
+          * La función `getUser` realiza una llamada API asincrónica para recuperar datos y identificadores del usuario.
+          * Estados de carga y errores correspondientes.
+          * @returns La función `getUser` devuelve el objeto de datos recibido de la llamada API.
+        */
         const getUser = async () => {
       
             try {
@@ -86,6 +93,17 @@ export function AppProvider({ children }: AuthProviderProps) {
 
 
     //Obtener Informacion de cada Usuario 
+    /**
+      * La función `getUserInfo` es una función asincrónica que realiza una solicitud GET a un determinado
+      * Punto final API para recuperar información del usuario según el "userId" proporcionado.
+      * @param {string} userId - El parámetro `userId` en la función `getUserInfo` es una cadena que
+      * representa el identificador único del usuario del que desea recuperar información. Este
+      * La función realiza una solicitud asincrónica a un punto final API para obtener información del usuario según el
+      * proporcionó `Id. de usuario`.
+      * @returns La función `getUserInfo` devuelve los datos recibidos de la respuesta API si el
+      * el estado es 200. Si el estado no es 200, se genera un error. Si hay un error durante la API
+      * llamada, se registra un mensaje de error en la consola.
+    */
     const getUserInfo = async ( userId:string ) => {
 
         //Declaramos variables globales. Se crea URL de API encargada de hacer peticiones HTTP a Dummy.io
@@ -104,7 +122,8 @@ export function AppProvider({ children }: AuthProviderProps) {
                 
             }
             
-            setLoading(false)
+            setLoading(false);
+            setCurrentUser(resp.data)
             return resp.data
     
         } catch (error) {
@@ -115,6 +134,12 @@ export function AppProvider({ children }: AuthProviderProps) {
     }
     
     //Eliminar usuario de lista de usuario
+    /**
+       * La función `deleteUser` realiza una solicitud asincrónica para eliminar un usuario con el especificado
+       * userId y maneja la respuesta en consecuencia.
+       * @param {string} userId - El parámetro `userId` en la función `deleteUser` es una cadena que
+       * representa el identificador único del usuario que desea eliminar del sistema.
+    */
     const deleteUser = async (userId:string) =>{
         const url = `${BASE_API_URL}/user/${userId}`
         
@@ -140,6 +165,17 @@ export function AppProvider({ children }: AuthProviderProps) {
 
 
     //Agregar Usuario Nuevo;
+    /**
+      * La función `addUser` es una función asincrónica que envía una solicitud POST para crear un nuevo
+      * usuario con las credenciales proporcionadas y maneja la respuesta en consecuencia.
+      * @param {cualquier} credencial: el parámetro `credentials` en la función `addUser` probablemente contenga
+      * la información del usuario que debe agregarse al sistema. Esta información podría incluir
+      * detalles como el nombre de usuario, correo electrónico, contraseña o cualquier otro campo obligatorio para crear un
+      * nueva cuenta de usuario. La función utiliza estas `credenciales
+      * @returns La función `addUser` devuelve un objeto con una propiedad `error` que indica si
+      * ocurrió un error durante la ejecución de la función. Si no ocurrió ningún error, devuelve `{ error: falso
+      * }`, y si ocurrió un error, devuelve `{ error: true }`.
+    */
     const addUser = async (credentials:any) =>{
         
         const url = `${BASE_API_URL}/user/create`
@@ -175,6 +211,17 @@ export function AppProvider({ children }: AuthProviderProps) {
 
 
     //Actualizar usuario
+
+    /**
+      * La función updateUser en TypeScript React actualiza la información de un usuario usando un HTTP PUT
+      * solicitud con manejo de errores.
+      * @param {string} id: el parámetro `id` en la función `updateUser` es una cadena que representa
+      * el identificador único del usuario cuya información se está actualizando.
+      * @param {cualquiera} credenciales: el parámetro `credentials` en la función `updateUser` probablemente
+      * contiene los datos que deben actualizarse para el usuario con el "id" especificado. Estos datos podrían
+      * incluir información como el nombre de usuario, correo electrónico, contraseña o cualquier otro detalle que pueda ser
+      * actualizado para un perfil de usuario.
+    */
     const updateUser = async (id:string, credentials:any) => {
         const url = `${BASE_API_URL}/user/${id}`
         
@@ -198,11 +245,23 @@ export function AppProvider({ children }: AuthProviderProps) {
     }
 
     return(
-        <AuthContext.Provider value={{ users, getUserInfo, 
-                                        loading, deleteUser, 
-                                        addUser, userAdded,
-                                         userWasDeleted, showUpdateModal, 
-                                         setShowUpdateModal, updateUser, userWasUpdated }}>
+        <AuthContext.Provider 
+            value={{ 
+                users, 
+                getUserInfo, 
+                loading, 
+                deleteUser, 
+                addUser, 
+                userAdded,
+                userWasDeleted, 
+                showUpdateModal, 
+                setShowUpdateModal, 
+                updateUser, 
+                userWasUpdated, 
+                currentUser, 
+                setCurrentUser 
+            }}
+        >
             {children}
         </AuthContext.Provider>
     ) 

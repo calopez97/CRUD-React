@@ -2,7 +2,7 @@
 
 }
 
-.paginate li:not(.previous, .next){
+.paginate li:not(.previous, .next) a{
     background-color: transparent;
     color: white;
     display: flex;
@@ -14,8 +14,13 @@
     opacity: .8;
 }
 
-.paginate li.selected:not(.previous, .next),
-.paginate li:not(.previous, .next):hover{
+.paginate li.next.disabled,
+.paginate li.previous.disabled{
+    display: none;
+}
+
+.paginate li.selected:not(.previous, .next) a,
+.paginate li:not(.previous, .next) a:hover{
     transition: all .5 ease-in;
     background-color: white;
     color: black;
