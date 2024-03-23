@@ -1,0 +1,30 @@
+.paginate{
+
+}
+
+.paginate li:not(.previous, .next){
+    background-color: transparent;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    transition: all .5 ease-in;
+    opacity: .8;
+}
+
+.paginate li.selected:not(.previous, .next),
+.paginate li:not(.previous, .next):hover{
+    transition: all .5 ease-in;
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+    border: 1px solid black;
+    opacity: 1;
+}
+
+input:disabled{
+    opacity: 1;
+    background-color: lightgrey;
+}
