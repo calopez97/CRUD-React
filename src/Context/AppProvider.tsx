@@ -8,6 +8,7 @@ import {
     useEffect,
 } from 'react'
 import { APP_ID, BASE_API_URL } from './credentials';
+import { User } from '../types/types';
 
 
 
@@ -20,19 +21,19 @@ const AuthContext = createContext({
     users: [],
     loading:false,
     getUserInfo: (
-        userId:string
-    ) => {},
+        userId: string
+    ) => {userId},
     deleteUser: (
         userId:string
-    ) => {},
-    addUser: (credentials: User.user | any)=>{}, 
-    updateUser:(id:string, credentials: User.user | any)=>{},
+    ) => {userId},
+    addUser: (credentials: User )=>{ credentials }, 
+    updateUser:(id:string, credentials: User )=>{ id, credentials },
     userAdded:false,
     userWasDeleted:false,
     showUpdateModal:false,
-    setShowUpdateModal:(boolean) => {},
+    setShowUpdateModal:(boolean: boolean) => {boolean},
     userWasUpdated:false,
-    setUserWasUpdated:  ( boolean ) => { },
+    setUserWasUpdated:  ( boolean:boolean ) => { boolean },
     currentUser:[],
 })
 

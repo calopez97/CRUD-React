@@ -104,7 +104,7 @@ const UserModal = ({ onClose, userId }: userModalProps) => {
                                     </div>
                                 </div>
                                 <div className="modal-footer gap-5 flex-wrap">
-                                    <ul className="info-list md:w-[40%] font-bold flex flex-col justify-center align-middle">
+                                    <ul className="info-list w-[40%] md:w-[40%] font-bold flex flex-col justify-center align-middle">
                                         <li className="field t w-full mb-2">Género
                                             <p className="data font-light">{user.gender}</p>
                                         </li>
@@ -115,13 +115,13 @@ const UserModal = ({ onClose, userId }: userModalProps) => {
                                             <p className="data font-light">{creationDate}</p>
                                         </li>
                                         <li className="field w-full mb-2">Email
-                                            <p className="data font-light">{user.email}</p>
+                                            <p className="data font-light break-all">{user.email}</p>
                                         </li>
                                         <li className="field w-full mb-2">Télefono
                                             <p className="data font-light">{user.phone}</p>
                                         </li>
                                     </ul>
-                                    <ul className="info-list  md:w-[40%] justify-center font-bold align-middle ">
+                                    <ul className="info-list w-[40%] md:w-[40%] justify-center font-bold align-middle ">
                                         <li className="field mb-2">Estado
                                             <p className="data font-light">{location.state}</p>
                                         </li>
